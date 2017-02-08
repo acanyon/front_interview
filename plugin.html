@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+      }
+      button {
+        display: block;
+        width: 250px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2px;
+      }
+    </style>
+    <script type="text/javascript" src="https://dl.frontapp.com/libs/frontjs.min.js"></script>
+    <script type="text/javascript" src="test-plugin.js"></script>
+  </head>
+  <body>
+    <button onClick="close()">Close</button>
+    <button onclick="open()">Open</button>
+    <button onClick="showPulls()">All</button>
+  </body>
+  <script type="text/javascript">
+    var conversation;
+
+    function close () {
+    }
+
+    function open () {
+    }
+
+    function showPulls () {
+      $.get("https://github.com/acanyon/ShowStud/pulls", function (response) {
+        Front.fetchInboxes(function (inboxes) {
+          if (!inboxes)
+            return;
+
+          console.log(inboxes);
+        });
+      });
+    }
+  </script>
+</html>
