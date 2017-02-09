@@ -27,17 +27,21 @@
       $.ajax({method: 'PATCH', url: url, body: {state: state}});
     }
 
-    function close_pr () {
-      console.log(conversation);
-      mod_pull(conversation.metadata.id, 'closed');
-    }
-
-    function open_pr () {
-      console.log("open");
-      console.log(conversation);
+    var close_pr, open_pr;
+    Front.on('conversation', function (data) {
       debugger;
-      mod_pull(conversation.metadata.id, 'open');
-    }
+      close_pr = function () {
+        console.log(conversation);
+        mod_pull(conversation.metadata.id, 'closed');
+      }
+
+      open_pr = function () {
+        console.log("open");
+        console.log(conversation);
+        debugger;
+        mod_pull(conversation.metadata.id, 'open');
+      }
+    });
 
   </script>
 </html>
