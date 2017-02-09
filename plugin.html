@@ -27,12 +27,13 @@
     }
 
     function close () {
-      alert(conversation);
+      console.log(conversation);
       mod_pull(conversation.metadata.id, 'closed');
     }
 
     function open () {
-      alert(conversation);
+      console.log("open");
+      console.log(conversation);
       mod_pull(conversation.metadata.id, 'open');
     }
 
