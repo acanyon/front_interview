@@ -18,7 +18,6 @@
   <body>
     <button onClick="close()">Close</button>
     <button onclick="open()">Open</button>
-    <button onClick="showPulls()">All</button>
   </body>
   <script type="text/javascript">
     var conversation;
@@ -29,15 +28,5 @@
     function open () {
     }
 
-    function showPulls () {
-      $.get("https://github.com/acanyon/ShowStud/pulls", function (response) {
-        Front.fetchInboxes(function (inboxes) {
-          if (!inboxes)
-            return;
-
-          console.log(inboxes);
-        });
-      });
-    }
   </script>
 </html>
