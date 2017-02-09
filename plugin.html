@@ -12,18 +12,20 @@
         margin-top: 2px;
       }
     </style>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
     <script type="text/javascript">window.enableFrontDebugMode = true;</script>
     <script type="text/javascript" src="https://dl.frontapp.com/libs/frontjs.min.js"></script>
+
   </head>
   <body>
     <button onClick="close_pr()">Close</button>
     <button onclick="open_pr()">Open</button>
   </body>
   <script type="text/javascript">
-    var conversation;
+    var GITHUBTOKEN = "59eb748562fe40e8c967c174098e04b394b59d3c";
 
     function mod_pull (id, state) {
-      var url = 'https://github.com/repos/:owner/:repo/pulls/' + id;
+      var url = 'https://acanyon:' + GITHUBTOKEN + '@github.com/repos/:owner/:repo/pulls/' + id;
       $.ajax({method: 'PATCH', url: url, body: {state: state}});
     }
 
