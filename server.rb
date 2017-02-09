@@ -34,7 +34,7 @@ post '/github_hook' do
 
   sender = {handle: response['sender']['login']}
   subject = "[#{response['pull_request']['head']['repo']['name']}] #{response['pull_request']['title']}"
-  body = response.action
+  body = response['action']
   body = "#{body} comment:\n#{response['comment']['html_url']}" if response['comment']
 
   create_front_message(sender, subject, body)
