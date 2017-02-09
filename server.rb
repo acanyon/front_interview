@@ -29,6 +29,11 @@ get '/' do
 end
 
 post '/github_hook' do
-  create_front_message({name: 'github', handle: 'github'}, 'pull request', request.body.string)
+  response = JSON.parse request.body.string
+  sender = {handle: response.sender.login}
+  subject = "[#{response.head.repo.name}] #{response.pull_request.title}"
+  body = "something changed"
+  create_front_message({name: 'github', handle: 'github'}, subject, request.body.string)
+
 end
 
