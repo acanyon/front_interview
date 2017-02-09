@@ -22,10 +22,19 @@
   <script type="text/javascript">
     var conversation;
 
+    function mod_pull (id, state) {
+      var url = 'https://github.com/repos/:owner/:repo/pulls/' + id;
+      $.ajax({method: 'PATCH', url: url, body: {state: state}});
+    }
+
     function close () {
+      alert(conversation);
+      mod_pull(conversation.metadata.id, 'closed');
     }
 
     function open () {
+      alert(conversation);
+      mod_pull(conversation.metadata.id, 'open');
     }
 
   </script>
