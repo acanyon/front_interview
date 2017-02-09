@@ -29,6 +29,6 @@ get '/' do
 end
 
 post '/github_hook' do
-  create_front_message({name: 'github', handle: 'github'}, 'pull request', request.body.to_json)
+  create_front_message({name: 'github', handle: 'github'}, 'pull request', request.body.getvalue())
 end
 
