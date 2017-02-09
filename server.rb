@@ -33,7 +33,7 @@ post '/github_hook' do
   sender = {handle: response['sender']['login']}
   subject = "[#{response['pull_request']['head']['repo']['name']}] #{response['pull_request']['title']}"
   body = "something changed"
-  create_front_message(sender, subject, body)
+  create_front_message(sender, subject, response)
 
 end
 
