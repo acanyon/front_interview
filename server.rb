@@ -1,6 +1,5 @@
 require 'sinatra'
 require 'httparty'
-require 'json'
 require 'pry'
 
 FRONTTOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzY29wZXMiOlsiKiJdLCJpc3MiOiJmcm9udCIsInN1YiI6ImFjYW55b24ifQ.ijq2oiBOyZ6-2ytyI9LIHbImQr59t_OqNiR-B_LvAAg"
@@ -32,7 +31,7 @@ end
 post '/github_hook' do
   response = JSON.parse request.body.string
   sender = {handle: response['sender']['login']}
-  subject = "[#{response['head']['repo']['name']}] #{response['pull_request']['title']}"
+  subject = "[#{response['pull_request']['head']['repo']['name']}] #{response['pull_request']['title']}"
   body = "something changed"
   create_front_message({name: 'github', handle: 'github'}, subject, request.body.string)
 
