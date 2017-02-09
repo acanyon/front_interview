@@ -30,12 +30,12 @@
     var close_pr, open_pr;
     Front.on('conversation', function (data) {
       close_pr = function () {
-        var github_id = data.message.metadata.github_id;
+        // var github_id = data.message.metadata.github_id;
         mod_pull(1, 'closed');
       }
 
       open_pr = function () {
-        var github_id = data.message.metadata.github_id;
+        // var github_id = data.message.metadata.github_id;
         mod_pull(1, 'open');
       }
     });
