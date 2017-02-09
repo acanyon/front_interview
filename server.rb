@@ -1,20 +1,34 @@
 require 'sinatra'
-require 'pp'
+require 'httparty'
+require 'pry'
 
-class HelloApp < Sinatra::Base
-  configure do
-    set :threaded, false
-  end
+FRONTTOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzY29wZXMiOlsiKiJdLCJpc3MiOiJmcm9udCIsInN1YiI6ImFjYW55b24ifQ.ijq2oiBOyZ6-2ytyI9LIHbImQr59t_OqNiR-B_LvAAg"
 
-  post '/github_hook' do
-    HTTParty.post(
-      "https://api2.frontapp.com/channels/cha_1e6x/incoming_messages",
-      body:{
-        sender: {name: 'github', handle: 'github'},
-        subject: 'pull request',
-        body: request.body
-      })
-  end
+def create_front_message (sender, subject, body)
+  response = HTTParty.post(
+    'https://api2.frontapp.com/channels/cha_1e6x/incoming_messages',
+    {
+      body: {
+        'sender' => sender,
+        'subject' => subject,
+        'body' => body,
+      }.to_json,
+      headers: {
+        'Accept' => 'application/json',
+        'Authorization' => "Bearer #{FRONTTOKEN}",
+        'Content-Type' => 'application/json',
+        'Host' => 'api2.frontapp.com',
+      }
+    }
+  )
+  response.request
 end
 
-HelloApp.new
+get '/' do 
+  create_front_message({name: 'github', handle: 'github'}, 'pull request', 'test body')
+end
+
+post '/github_hook' do
+  create_front_message({name: 'github', handle: 'github'}, 'pull request', request.body)
+end
+
