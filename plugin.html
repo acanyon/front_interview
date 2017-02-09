@@ -16,8 +16,8 @@
     <script type="text/javascript" src="https://dl.frontapp.com/libs/frontjs.min.js"></script>
   </head>
   <body>
-    <button onClick="close()">Close</button>
-    <button onclick="open()">Open</button>
+    <button onClick="close_pr()">Close</button>
+    <button onclick="open_pr()">Open</button>
   </body>
   <script type="text/javascript">
     var conversation;
@@ -27,12 +27,12 @@
       $.ajax({method: 'PATCH', url: url, body: {state: state}});
     }
 
-    function close () {
+    function close_pr () {
       console.log(conversation);
       mod_pull(conversation.metadata.id, 'closed');
     }
 
-    function open () {
+    function open_pr () {
       console.log("open");
       console.log(conversation);
       debugger;
