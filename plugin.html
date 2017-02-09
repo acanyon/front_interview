@@ -26,7 +26,7 @@
 
     function mod_pull (id, state) {
       var url = 'https://acanyon:' + GITHUBTOKEN + '@api.github.com/repos/acanyon/ShowStud/pulls/' + id;
-      $.ajax({method: 'PATCH', url: url, body: {state: state}, headers: {'Content-Type': 'application/vnd.github.VERSION.patch'});
+      $.ajax({method: 'PATCH', url: url, body: {state: state}, headers: {'Content-Type': 'application/vnd.github.VERSION.patch'}});
     }
 
     var close_pr, open_pr;
