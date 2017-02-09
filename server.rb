@@ -31,10 +31,12 @@ end
 
 post '/github_hook' do
   response = JSON.parse request.body.string
+
   sender = {handle: response['sender']['login']}
   subject = "[#{response['pull_request']['head']['repo']['name']}] #{response['pull_request']['title']}"
-  body = "something changed"
-  create_front_message(sender, subject, request.body.string)
+  body = response.action
+  body = "#{body} comment:\n#{response['comment']['html_url']}" if response['comment']
 
+  create_front_message(sender, subject, body)
 end
 
