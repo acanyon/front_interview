@@ -30,6 +30,10 @@ get '/' do
   create_front_message({name: 'github', handle: 'github'}, 'pull request', 'test body')
 end
 
+get '/plugin.html' do
+  File.read('plugin.html')
+end
+
 post '/github_hook' do
   response = JSON.parse request.body.string
 
@@ -37,7 +41,7 @@ post '/github_hook' do
   subject = "[#{response['pull_request']['head']['repo']['name']}] #{response['pull_request']['title']}"
   body = response['action']
   body = "#{body} comment:\n#{response['comment']['html_url']}" if response['comment']
-  metadata = {'id': response['pull_request']['id']}
+  metadata = {'id' => response['pull_request']['id']}
 
   create_front_message(sender, subject, body, metadata)
 end
