@@ -29,17 +29,14 @@
 
     var close_pr, open_pr;
     Front.on('conversation', function (data) {
-      debugger;
       close_pr = function () {
-        console.log(conversation);
-        mod_pull(conversation.metadata.id, 'closed');
+        var github_id = data.message.metadata.github_id;
+        mod_pull(1, 'closed');
       }
 
       open_pr = function () {
-        console.log("open");
-        console.log(conversation);
-        debugger;
-        mod_pull(conversation.metadata.id, 'open');
+        var github_id = data.message.metadata.github_id;
+        mod_pull(1, 'open');
       }
     });
 
