@@ -1,0 +1,16 @@
+
+# Using the plugin
+
+To use the plugin, install it via Front (http://dev.frontapp.com/plugin.html#creating-a-plugin)
+* create a github custom access token and set it in plugin.html (https://help.github.com/articles/creating-an-access-token-for-command-line-use/)
+* deploy using ngRok
+  > ngrok http 80
+* set the domain in Front:  Settings > API & integrations > Plugins ans click on “Add a plugin"
+  - your domain should be <ngrok domain>/plugin.html
+
+# Using the custom channel
+
+* create a custom channel http://dev.frontapp.com/#create-a-custom-channel
+* find the channel callback url and set the FRONTCHANNEL in server.rb http://dev.frontapp.com/#receive-custom-message
+* setup a webhook using the hosted domain (ngrok or otherwise) https://developer.github.com/webhooks/creating/
+  - In the Settings page of your repository, and click on Webhooks & services. After that, click on Add webhook.
