@@ -22,11 +22,20 @@
     <button onclick="open_pr()">Open</button>
   </body>
   <script type="text/javascript">
-    var GITHUBTOKEN = "59eb748562fe40e8c967c174098e04b394b59d3c";
+    var GITHUBTOKEN = "<GITHUBTOKEN>";
 
     function mod_pull (id, state) {
-      var url = 'https://acanyon:' + GITHUBTOKEN + '@api.github.com/repos/acanyon/ShowStud/pulls/' + id;
-      $.ajax({method: 'PATCH', url: url, body: {state: state}, headers: {'Content-Type': 'application/vnd.github.VERSION.patch'}});
+      var url = 'https://api.github.com/repos/acanyon/ShowStud/pulls/' + id + '?access_token=' + GITHUBTOKEN;
+      $.ajax({
+        method: 'PATCH',
+        url: url,
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({
+          state: state,
+        }),
+        headers: {'Authorization': 'token ' + GITHUBTOKEN}
+      });
     }
 
     var close_pr, open_pr;

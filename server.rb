@@ -5,7 +5,9 @@ require 'json'
 
 FRONTTOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzY29wZXMiOlsiKiJdLCJpc3MiOiJmcm9udCIsInN1YiI6ImFjYW55b24ifQ.ijq2oiBOyZ6-2ytyI9LIHbImQr59t_OqNiR-B_LvAAg"
 
-def create_front_message (sender, subject, body, metadata)
+set :port, 80
+
+def create_front_message (sender, subject, body, metadata={})
   response = HTTParty.post(
     'https://api2.frontapp.com/channels/cha_1e6x/incoming_messages',
     {
@@ -31,6 +33,7 @@ get '/' do
 end
 
 get '/plugin.html' do
+  response.headers['X-Frame-Options'] = 'ALLOW-FROM app.frontapp.com'
   File.read('plugin.html')
 end
 
