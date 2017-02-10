@@ -3,13 +3,14 @@ require 'httparty'
 require 'pry'
 require 'json'
 
-FRONTTOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzY29wZXMiOlsiKiJdLCJpc3MiOiJmcm9udCIsInN1YiI6ImFjYW55b24ifQ.ijq2oiBOyZ6-2ytyI9LIHbImQr59t_OqNiR-B_LvAAg"
+FRONTTOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzY29wZXMiOlsiKiJdLCJpc3MiOiJmcm9udCIsInN1YiI6ImFjYW55b24ifQ.ijq2oiBOyZ6-2ytyI9LIHbImQr59t_OqNiR-B_LvAAg'
+FRONTCHANNEL = 'https://api2.frontapp.com/channels/cha_1e6x/incoming_messages'
 
 set :port, 80
 
 def create_front_message (sender, subject, body, metadata={})
   response = HTTParty.post(
-    'https://api2.frontapp.com/channels/cha_1e6x/incoming_messages',
+    FRONTCHANNEL,
     {
       body: {
         'sender' => sender,
